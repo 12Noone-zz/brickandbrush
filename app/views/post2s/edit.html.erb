@@ -1,0 +1,33 @@
+<div id="new-post">
+<%= form_for @post2 do |f| %>
+
+<!-- Google Maps Api! -->
+<!-- <div id="map-canvas"></div> -->
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<div id="map" style="width: 500x; height: 500px"></div>
+<br>
+
+      <!-- Title -->
+    	<!-- <%= f.label :title %> -->
+    	<%= f.text_field :title, :value => @post2.title %> <br>
+      <!-- Author -->
+
+      <!-- Location -->
+      <!-- <%= f.label :Location %> -->
+      <br>
+      <div class="input-field col s12">
+     <%= f.select :location, Post::LOCATIONS %>
+    </div>
+
+      <!-- Image  -->
+
+      <%= f.label :image %>
+    	<%= f.file_field :image %> <br>
+      <!-- Image 1 -->
+
+     <input type="hidden" name="post[maps]" id="latlngfield">
+  	<!-- <%= f.submit %> -->
+    <input type="submit" name="commit" id="submitbutton" value="Submit Data">
+<% end %>
+</div>

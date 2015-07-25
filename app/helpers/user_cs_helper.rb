@@ -1,0 +1,2 @@
+module UserCsHelper
+end

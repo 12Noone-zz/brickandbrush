@@ -1,0 +1,23 @@
+<div id="show">
+	<% @posts.sort{ |a,b| b.created_at <=> a.created_at }.each do |post| %>
+		<!-- title -->
+		<div id="post-title">
+			<h2><a href="/posts/<%=post.id%>"><%= post.title %></a></h2>
+		</div>
+		<!-- meta -->
+		<p>
+			<span><%= post.created_at.to_date %>
+				<i class="fa fa-circle"></i> by <%= post.user.username %>
+				<i class="fa fa-circle"></i> <a href="/posts/<%=post.id%>/#comments">Comments <%=post.comments.length %></a>
+				<i class="fa fa-circle"></i>
+			</span>
+			<a href="/locations/<%=post.location.downcase.split.join("")%>"><%= post.location %></a>
+		<p>
+		<!-- photos -->
+		<% post.attachments.each do |image| %>
+			<div class="image-div"><%= image_tag image.url %></div><br>
+		<% end %>
+		<p><%= post.content %></p>
+			<hr>
+	<% end %>
+</div>

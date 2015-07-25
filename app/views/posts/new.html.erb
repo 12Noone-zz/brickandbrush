@@ -1,0 +1,98 @@
+<% if current_user.is_featured == true%>
+<div class="post-create-explaination">
+  <p> Welcome to posting! Use the map below to choose the location of your post. We currently support up to six photographs per post. Additionaly, don't forget to mark what borough the post is referencing! Thanks and enjoy. - B&B <p>
+</div>
+<div id="new-post">
+<%= form_for @post do |f| %>
+
+<!-- Google Maps Api! -->
+<!-- <div id="map-canvas"></div> -->
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<div id="map-container">
+<div id="map"></div>
+</div>
+<br>
+
+<style>
+$(document).ready(function() {
+    $('select').material_select();
+});
+</style>
+
+<!-- Title -->
+<!-- <%= f.label :title %> -->
+<%= f.text_field :title, :placeholder => "Title" %> <br>
+<!-- Author -->
+
+<!-- Content -->
+<!-- <%= f.label :content %><br> -->
+<%= f.text_area :content, :placeholder => "Type here..." %> <br>
+
+<!-- Location -->
+<!-- <%= f.label :Location %> -->
+<div class="input-field col s12">
+<%= f.select :location, Post::LOCATIONS %>
+</div>
+<br>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image]"/>
+</div>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image1]"/>
+</div>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image2]"/>
+</div>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image3]"/>
+</div>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image4]"/>
+</div>
+
+<div class="file-field">
+<input class="file-path" type="text" placeholder="Add image" id="image-hover"/>
+<input type="file" name="post[image5]"/>
+</div>
+
+
+
+<!-- <%= f.file_field :image %> <br>
+<%= f.label :image1 %>
+<%= f.file_field :image1 %> <br>
+<%= f.label :image2 %>
+<%= f.file_field :image2 %> <br>
+<%= f.label :image3 %>
+<%= f.file_field :image3 %> <br>
+<%= f.label :image4 %>
+<%= f.file_field :image4 %> <br>
+<%= f.label :image5 %>
+<%= f.file_field :image5 %> <br>      <br> -->
+
+<input type="hidden" name="post[maps]" id="latlngfield">
+<!-- <%= f.submit %> -->
+    <input type="submit" name="commit" id="submitbutton" value="Submit Data">
+<% end %>
+</div>
+<%elsif%>
+<div id="show">
+<h4> Whoops! Looks like you're a bit lost. If you're looking to create a post, head to the Community section!</h4>
+<span class="favorite-link">
+<%= link_to 'Back', @post %>
+</span>
+<span class="favorite-link">
+<%= link_to 'Community', post2s_path %>
+</span>
+</div>
+<%end%>

@@ -1,0 +1,22 @@
+<div id="new-user-div">
+  <h5> Log In </h5> <br>
+<form action="<%= session_path %>"
+      method="post"
+      autocomplete="off">
+
+<div id="signup">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="text"
+         name="user[username]"
+         placeholder="USERNAME">
+  <input type="password"
+         name="user[password]"
+         placeholder="PASSWORD">
+  <input type="submit" value="LOG IN">
+
+</form>
+</div>
+</div>

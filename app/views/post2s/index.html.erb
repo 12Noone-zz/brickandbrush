@@ -1,0 +1,28 @@
+<div class="community-explaination">
+	<p> Community gives our followers the ability to share their own photographs, as well as their own work around New York City. Simply click the button below to begin. <p>
+<a href="<%= new_post2_path%>">
+<div id="community-post-button">Contribute</div></a>
+</div>
+
+<div id="show">
+			<% @post2.each do |post| %>
+				<% post.attachments.each do |image| %>
+					<!-- <a href="/post2s/<%=post.id%>"> -->
+						<div class="image-div">
+							<div class="wrapper">
+								<div class="stretch" style="background-image: url(<%=image.url()%>)"></div>
+							</div>
+						</div>
+					<!-- </a> -->
+			<% end %>
+			<p> by <%=post.user.username%>
+				<i class="fa fa-circle"></i>
+				<a href="https://www.google.com/maps/@-15.623037,18.388672,4z">View on Google Maps</a>
+				</p>
+				<%post.map%>
+				<% if current_user === post.user %>
+				<%= button_to 'Delete', post, method: :delete %>
+				<% end %>
+			<hr>
+		<% end %>
+</div>

@@ -1,0 +1,12 @@
+
+<p>Title:</p>
+<p><%= comment.name %></p>
+
+
+<p>Content:</p>
+<p><%= comment.content %></p>
+
+<% if comment.user == current_user %> 
+	<%= link_to 'Delete comment', [comment.post, comment], method: :delete %>
+<% end %>
+<hr>

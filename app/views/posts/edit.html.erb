@@ -1,0 +1,23 @@
+<% if current_user.id === @post.user_id %>
+<div class="post-create-explaination">
+	<p> Currently, editing does not support file uploads. Please compose a new post if you require additional photographs. Additionally, don't forget to update the location via Google Maps. <p>
+</div>
+<%= render 'form' %>
+
+<div id="show">
+	<span class="favorite-link">
+<%= link_to 'Back', @post %>
+</span>
+<span class="favorite-link">
+<%= link_to 'Delete Post', @post, :confirm => 'Are you sure?',
+																		:method => :delete %>
+																	</span>
+																	</div>
+<% elsif %>
+<div id="show">
+<h4> Whoops! You can't edit a post you haven't authored.</h4>
+<span class="favorite-link">
+<%= link_to 'Back', @post %>
+</span>
+</div>
+																		<% end %>

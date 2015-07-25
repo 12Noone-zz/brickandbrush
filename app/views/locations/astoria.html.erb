@@ -1,0 +1,27 @@
+<div id="show">
+<% @Astoria.sort{ |a,b| b.created_at <=> a.created_at }.each do |post| %>
+
+<!-- title -->
+<div id="post-title">
+<h2> <a href="/posts/<%=post.id%>"><%= post.title %></a></h2>
+</div>
+<!-- meta -->
+<p><span>	<%= post.created_at.to_date %> <i class="fa fa-circle">
+</i> by <%= post.user.username %> <i class="fa fa-circle">
+</i> <a href="/posts/<%=post.id%>/#comments">Comments <%=post.comments.length %></a> <i class="fa fa-circle"></i></span>
+					<span class="location-span"><%= post.location %></span><p>
+<!-- photos -->
+
+<% post.attachments.each do |image| %>
+	<div id="image-div"><%= image_tag image.url() %></div>
+<% end %>
+
+<p> <%= post.content %> <br>
+<hr>
+<% end %>
+</div>
+</div>
+
+		</form>
+		</div>
+  </div>

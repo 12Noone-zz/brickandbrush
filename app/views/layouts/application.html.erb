@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project3</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+<% unless current_user %>
+  <!-- Navigation If Not Current User -->
+  <div id="not-user-navigation">
+    <a href="<%= root_path %>" class="logo">BRICK&BRUSH</a>
+		<div class="desktop">
+			<ul>
+				<li><a href="<%= new_user_path %>">Sign Up</a></li>
+				<li><a href="<%= new_session_path %>">Log in</a></li>
+        <!-- <li><a href="/welcome/about">About</a></li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="mobilenav">
+    <!-- <li><a href="/welcome/about">About</a></li> -->
+    <li><a href="<%= new_session_path %>">Log in</a></li>
+    <li><a href="<%= new_user_path %>">Sign Up</a></li>
+    <li><a href="<%= root_path %>">Home</a></li>
+  </div>
+  <a href="javascript:void(0)" class="icon">
+    <div class="hamburger">
+      <div class="menui top-menu"></div>
+      <div class="menui mid-menu"></div>
+      <div class="menui bottom-menu"></div>
+    </div>
+  </a>
+<% else %>
+  <!-- Navigation if Current User -->
+  <div id="user-navigation">
+    <a href="<%= root_path %>" class="logo">BRICK&BRUSH</a>
+    <div class="desktop">
+			<ul>
+        <li><%= link_to "Logout", session_path, method: :delete %></li>
+				<li><a href="/users/<%=current_user.id %> ">Profile</a></li>
+        <li><a href="<%= post2s_path %>">Community</a></li>
+        <% if current_user.is_featured == true %>
+          <li><a href="<%= new_post_path %>">Create Post</a></li>
+        <% end %>
+			</ul>
+    </div>
+  </div>
+  <div class="mobilenav">
+    <ul>
+      <!-- <li><a href="/welcome/about">About</a></li> -->
+      <% if current_user.is_featured === true %>
+      <li><a href="<%= new_post_path %>">Create Post</a></li>
+      <% end %>
+      <li><a href="/users/<%=current_user.id %> ">Profile</a></li>
+      <li><%= link_to "Logout", session_path, method: :delete %></li>
+      <li><a href="<%= post2s_path %>">Community</a></li>
+      <li><a href="<%= root_path %>">Home</a></li>
+    </ul>
+  </div>
+  <a href="javascript:void(0)" class="icon">
+    <div class="hamburger">
+      <div class="menui top-menu"></div>
+      <div class="menui mid-menu"></div>
+      <div class="menui bottom-menu"></div>
+    </div>
+  </a>
+<% end %>
+
+
+
+
+  <section id="main-content">
+    <%= yield %>
+  </section>
+<!--
+  <% if current_user %>
+  <h4> Signed in as: <%=current_user.username %></h4>
+  <% end %> -->
+
+  <script>
+    $(document).ready(function () {
+      $(".icon").click(function () {
+        $(".mobilenav").fadeToggle(500);
+        $(".top-menu").toggleClass("top-animate");
+        $(".mid-menu").toggleClass("mid-animate");
+        $(".bottom-menu").toggleClass("bottom-animate");
+      });
+
+      $(".dropdown-button").dropdown();
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div id="new-user-div">
+
+  <h5> Sign Up </h5>
+
+<%= form_for @user do |u| %>
+
+  <%= u.text_field :username, :placeholder => "USERNAME" %> <br>
+
+  <%= u.email_field :email, :placeholder => "EMAIL" %> <br>
+
+  <%= u.password_field :password, :placeholder => "PASSWORD" %> <br>
+
+  <%= u.password_field :password_confirmation, :placeholder => "CONFIRM PASSWORD" %> <br><br>
+
+  <div class="file-field">
+  <input class="file-path" type="text" placeholder="Add avatar" id="image-hover"/>
+  <input type="file" name="user[avatar]"/>
+  </div>
+
+  <!-- <%= u.file_field :avatar %> -->
+
+<br>
+<%= u.submit %>
+<% end %>
+
+</div>
